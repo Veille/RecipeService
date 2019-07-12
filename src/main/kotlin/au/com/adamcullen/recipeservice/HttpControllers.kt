@@ -13,11 +13,14 @@ class RecipeController(private val recipeRepository: RecipeRepository) {
     fun findAll() = recipeRepository.findAllByOrderByAddedAtDesc()
 
     @GetMapping("/{slug}")
-    fun getRecipeBySlug(@PathVariable slug: String) =
-            recipeRepository.findBySlug(slug) ?: throw IllegalArgumentException("Wrong recipe title provided")
+    fun getRecipeBySlug(@PathVariable slug: String): ResponseEntity<Recipe> {
+
+        val recipe = recipeRepository.findBySlug(slug) ?: return ResponseEntity.notFound().build()
+        return ResponseEntity.ok(recipe)
+    }
 
     @GetMapping
-    fun getRecipeById(@RequestParam(value="id") id: Long): ResponseEntity<Recipe> {
+    fun getRecipeById(@RequestParam id: Long): ResponseEntity<Recipe> {
         return recipeRepository.findById(id).map { recipe ->
             ResponseEntity.ok(recipe)
         }.orElse(ResponseEntity.notFound().build())
