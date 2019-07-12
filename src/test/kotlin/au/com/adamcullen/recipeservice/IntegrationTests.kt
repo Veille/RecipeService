@@ -1,5 +1,7 @@
 package au.com.adamcullen.recipeservice
 
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
+import com.fasterxml.jackson.module.kotlin.*
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
@@ -19,12 +21,16 @@ class IntegrationTests(@Autowired val restTemplate: TestRestTemplate) {
     }
 
     @Test
-    fun `Assert recipe title, author and status code`() {
+    fun `Assert status code OK, and is of type recipe`() {
         println(">> Assert recipe title, author and status code")
 
-        val entity = restTemplate.getForEntity<String>("/api/recipe/")
+        val mapper = jacksonObjectMapper().registerModule(JavaTimeModule())
+
+        val entity = restTemplate.getForEntity<String>("/api/recipes/")
+        val returnedRecipes: ArrayList<Recipe> = mapper.readValue(entity.body.toString())
+
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).contains("rice")
+        assertThat(returnedRecipes[0]).isInstanceOf(Recipe::class.java)
     }
 
     @AfterAll

@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue
 import javax.persistence.Id
 
 @Entity
-class Recipe(
+data class Recipe(
         var title: String,
         var author: String,
         var ingredients: String,

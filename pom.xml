@@ -40,6 +40,12 @@
             <scope>runtime</scope>
         </dependency>
 
+        <!-- Adds support for unmarshalling java8 date/time -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+        </dependency>
+
         <!-- Kotlin dependencies -->
         <dependency>
             <groupId>com.fasterxml.jackson.module</groupId>
