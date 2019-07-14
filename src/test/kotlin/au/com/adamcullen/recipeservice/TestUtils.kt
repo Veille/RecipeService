@@ -9,3 +9,5 @@ fun getRandomIngredients(): ArrayList<Ingredient> =
     )
 
 fun getRandomIngredient(): Ingredient = Ingredient(100, Units.g, "AP Flour", "sifted")
+
+fun getRandomMethod(): String = "Mix all ingredients until tender. \n Serve."

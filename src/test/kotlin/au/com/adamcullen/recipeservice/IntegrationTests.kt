@@ -36,7 +36,7 @@ class IntegrationTests(@Autowired val restTemplate: TestRestTemplate) {
                 title = "Bread",
                 author = "AdamC",
                 ingredients = getRandomIngredients(),
-                method = "Mix. Heat.")
+                method = getRandomMethod())
 
         recipeRepository.save(bread)
     }

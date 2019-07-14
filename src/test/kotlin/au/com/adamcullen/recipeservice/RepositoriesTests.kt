@@ -14,7 +14,7 @@ class RepositoriesTests @Autowired constructor(
 
     @Test
     fun `When findByIdOrNull then return Recipe`() {
-        val bread = Recipe("Bread", "AdamC", getRandomIngredients(), "Mix. Heat.")
+        val bread = Recipe("Bread", "AdamC", getRandomIngredients(), getRandomMethod())
         entityManager.persist(bread)
         entityManager.flush()
 
@@ -24,7 +24,7 @@ class RepositoriesTests @Autowired constructor(
 
     @Test
     fun `When findBySlug then return Recipe`() {
-        val bread = Recipe("Bread", "AdamC", getRandomIngredients(), "Mix. Heat.")
+        val bread = Recipe("Bread", "AdamC", getRandomIngredients(), getRandomMethod())
         entityManager.persist(bread)
         entityManager.flush()
 
