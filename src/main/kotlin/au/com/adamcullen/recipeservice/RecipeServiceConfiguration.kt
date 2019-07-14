@@ -10,12 +10,12 @@ class RecipeServiceConfiguration {
     @Bean
     fun databaseInitializer(recipeRepository: RecipeRepository) = ApplicationRunner {
 
-        val riceRecipe = Recipe(
+        /*val riceRecipe = Recipe(
                 title = "Cooked Rice",
                 author = "Adam Cullen",
-                ingredients = "Rice, Water, Salt",
+                ingredients = getRandomIngredients(),
                 method = "Put rice in water. Add Salt")
 
-        recipeRepository.save(riceRecipe)
+        recipeRepository.save(riceRecipe)*/
     }
 }
